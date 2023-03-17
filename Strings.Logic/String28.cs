@@ -41,21 +41,28 @@ namespace Strings.Logic
             {
                 for (int i = 1; i < n.Length; i++)
                 {
-                    
-                    if (n[i] == '=')
+
+                    if (n[i] == '=' || n[i] == '*')
                     {
-                        conexiones = 0;
-                        sumaconexion += 1;
+                        if (n[i] == '=')
+                        {
+                            conexiones = 0;
+                            sumaconexion += 1;
+                        }
+
+                        if (n[i] == '*')
+                        {
+                            conexiones++;
+                            sumaconexion += sumaconexion * 2;
+
+                        }
+
+                        if (sumaconexion > viga || conexiones == 2)
+                        {
+                            return false;
+                        } 
                     }
-
-                    if (n[i] == '*')
-                    {
-                        conexiones++;
-                        sumaconexion += sumaconexion * 2;
-
-                    }
-
-                    if (sumaconexion > viga || conexiones == 2)
+                    else
                     {
                         return false;
                     }
